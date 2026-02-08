@@ -1,0 +1,68 @@
+com.example.vault.app-jetified-ui-geometry-release-0 C:\Users\shame\.gradle\caches\9.1.0\transforms\058e223b6970de09ae030f4ce1d9405e\workspace\transformed\jetified-ui-geometry-release\res
+com.example.vault.app-sqlite-framework-2.4.0-1 C:\Users\shame\.gradle\caches\9.1.0\transforms\06c9c2be52bcc764d8ff7ccb43ff7911\workspace\transformed\sqlite-framework-2.4.0\res
+com.example.vault.app-lifecycle-livedata-core-2.7.0-2 C:\Users\shame\.gradle\caches\9.1.0\transforms\0ae6c81c966f8d2f761c6a62fda0f98c\workspace\transformed\lifecycle-livedata-core-2.7.0\res
+com.example.vault.app-jetified-lifecycle-runtime-ktx-2.7.0-3 C:\Users\shame\.gradle\caches\9.1.0\transforms\14ecd3b0436f73e7954c90b31a29e435\workspace\transformed\jetified-lifecycle-runtime-ktx-2.7.0\res
+com.example.vault.app-jetified-lifecycle-viewmodel-ktx-2.7.0-4 C:\Users\shame\.gradle\caches\9.1.0\transforms\196ad04bab4366c2d53141e5703a15e6\workspace\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\res
+com.example.vault.app-jetified-profileinstaller-1.3.0-5 C:\Users\shame\.gradle\caches\9.1.0\transforms\1a50b3da335e4055ec73e652429a732b\workspace\transformed\jetified-profileinstaller-1.3.0\res
+com.example.vault.app-appcompat-1.6.1-6 C:\Users\shame\.gradle\caches\9.1.0\transforms\1a83f07f1368ba89b75149bb3ddfff01\workspace\transformed\appcompat-1.6.1\res
+com.example.vault.app-jetified-appcompat-resources-1.6.1-7 C:\Users\shame\.gradle\caches\9.1.0\transforms\1ca714821c8b04444a788ce8d5496e27\workspace\transformed\jetified-appcompat-resources-1.6.1\res
+com.example.vault.app-jetified-activity-ktx-1.8.2-8 C:\Users\shame\.gradle\caches\9.1.0\transforms\2d0343cba9c29f868ed3833c96cfdbbc\workspace\transformed\jetified-activity-ktx-1.8.2\res
+com.example.vault.app-jetified-activity-compose-1.8.2-9 C:\Users\shame\.gradle\caches\9.1.0\transforms\308b299553d710e30e12c32297c90ea6\workspace\transformed\jetified-activity-compose-1.8.2\res
+com.example.vault.app-jetified-foundation-release-10 C:\Users\shame\.gradle\caches\9.1.0\transforms\3f648068a6b7d3447a7ad1e2bb2b311f\workspace\transformed\jetified-foundation-release\res
+com.example.vault.app-jetified-material-release-11 C:\Users\shame\.gradle\caches\9.1.0\transforms\4e665c6a9318b8f3af835733201bd2fa\workspace\transformed\jetified-material-release\res
+com.example.vault.app-core-1.12.0-12 C:\Users\shame\.gradle\caches\9.1.0\transforms\55144a20f7518b64c1e2bf8fab377f37\workspace\transformed\core-1.12.0\res
+com.example.vault.app-jetified-customview-poolingcontainer-1.0.0-13 C:\Users\shame\.gradle\caches\9.1.0\transforms\5bb64c9ad076e047298ea2c9c7102a65\workspace\transformed\jetified-customview-poolingcontainer-1.0.0\res
+com.example.vault.app-jetified-ui-test-manifest-1.6.1-14 C:\Users\shame\.gradle\caches\9.1.0\transforms\5d5e9b97426dbf1b5c43cca2d4341e93\workspace\transformed\jetified-ui-test-manifest-1.6.1\res
+com.example.vault.app-jetified-hilt-navigation-1.1.0-15 C:\Users\shame\.gradle\caches\9.1.0\transforms\5de1e8d7ada534ca617af13a17c207ca\workspace\transformed\jetified-hilt-navigation-1.1.0\res
+com.example.vault.app-jetified-ui-tooling-preview-release-16 C:\Users\shame\.gradle\caches\9.1.0\transforms\60a737801f0cad6df400a54f7f31200e\workspace\transformed\jetified-ui-tooling-preview-release\res
+com.example.vault.app-jetified-lifecycle-process-2.7.0-17 C:\Users\shame\.gradle\caches\9.1.0\transforms\63cae43959df4970ad8ada9297b597e7\workspace\transformed\jetified-lifecycle-process-2.7.0\res
+com.example.vault.app-jetified-hilt-navigation-compose-1.1.0-18 C:\Users\shame\.gradle\caches\9.1.0\transforms\688c448c4dbdf40d894d5b27f61f2904\workspace\transformed\jetified-hilt-navigation-compose-1.1.0\res
+com.example.vault.app-jetified-ui-tooling-release-19 C:\Users\shame\.gradle\caches\9.1.0\transforms\72f3787074bc32da068ef2a99d1f3570\workspace\transformed\jetified-ui-tooling-release\res
+com.example.vault.app-jetified-lifecycle-livedata-core-ktx-2.7.0-20 C:\Users\shame\.gradle\caches\9.1.0\transforms\757bb4c935d9d519f7d351d58e5d8f9d\workspace\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\res
+com.example.vault.app-lifecycle-livedata-2.7.0-21 C:\Users\shame\.gradle\caches\9.1.0\transforms\7899cab805287831fef5bc0eb0da9070\workspace\transformed\lifecycle-livedata-2.7.0\res
+com.example.vault.app-jetified-savedstate-1.2.1-22 C:\Users\shame\.gradle\caches\9.1.0\transforms\7a070687e6ce8e62abb3f3d95dd737c8\workspace\transformed\jetified-savedstate-1.2.1\res
+com.example.vault.app-navigation-runtime-ktx-2.7.7-23 C:\Users\shame\.gradle\caches\9.1.0\transforms\824cb9d475871e1d8143632d91d879db\workspace\transformed\navigation-runtime-ktx-2.7.7\res
+com.example.vault.app-sqlite-2.4.0-24 C:\Users\shame\.gradle\caches\9.1.0\transforms\900a839ed434e59898b2293d21ef6283\workspace\transformed\sqlite-2.4.0\res
+com.example.vault.app-jetified-room-ktx-2.6.1-25 C:\Users\shame\.gradle\caches\9.1.0\transforms\93375af704060c02a739e189827f7274\workspace\transformed\jetified-room-ktx-2.6.1\res
+com.example.vault.app-jetified-animation-release-26 C:\Users\shame\.gradle\caches\9.1.0\transforms\9ccfffada64bdefd43c197fcd826aace\workspace\transformed\jetified-animation-release\res
+com.example.vault.app-jetified-annotation-experimental-1.4.0-27 C:\Users\shame\.gradle\caches\9.1.0\transforms\9e515b16a690daa6d59e0927d1a014d5\workspace\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.vault.app-lifecycle-viewmodel-2.7.0-28 C:\Users\shame\.gradle\caches\9.1.0\transforms\9ea14f1949ad9a03e54267c7edef3e34\workspace\transformed\lifecycle-viewmodel-2.7.0\res
+com.example.vault.app-navigation-runtime-2.7.7-29 C:\Users\shame\.gradle\caches\9.1.0\transforms\9f6b12d573705e83ee4baed6cb2e6e02\workspace\transformed\navigation-runtime-2.7.7\res
+com.example.vault.app-navigation-common-2.7.7-30 C:\Users\shame\.gradle\caches\9.1.0\transforms\9f8ee70e304a409b6d3ec1306527614c\workspace\transformed\navigation-common-2.7.7\res
+com.example.vault.app-jetified-core-ktx-1.12.0-31 C:\Users\shame\.gradle\caches\9.1.0\transforms\a54864cd972b90ea6df5678b6a343114\workspace\transformed\jetified-core-ktx-1.12.0\res
+com.example.vault.app-jetified-ui-unit-release-32 C:\Users\shame\.gradle\caches\9.1.0\transforms\aa90aec23a04c1391b6ef5d2d8e8dd4b\workspace\transformed\jetified-ui-unit-release\res
+com.example.vault.app-jetified-material-icons-core-release-33 C:\Users\shame\.gradle\caches\9.1.0\transforms\ae987bf53c91118daea3bf177b62392a\workspace\transformed\jetified-material-icons-core-release\res
+com.example.vault.app-jetified-startup-runtime-1.1.1-34 C:\Users\shame\.gradle\caches\9.1.0\transforms\bfb598a1ea8550efc63e79e56ee72979\workspace\transformed\jetified-startup-runtime-1.1.1\res
+com.example.vault.app-jetified-ui-release-35 C:\Users\shame\.gradle\caches\9.1.0\transforms\bfbd42bec5e60adc40b1f7607911abd1\workspace\transformed\jetified-ui-release\res
+com.example.vault.app-core-runtime-2.2.0-36 C:\Users\shame\.gradle\caches\9.1.0\transforms\c082fc3a4f008b20d3e5fd9c5938f0d7\workspace\transformed\core-runtime-2.2.0\res
+com.example.vault.app-jetified-ui-tooling-data-release-37 C:\Users\shame\.gradle\caches\9.1.0\transforms\c821d4483ac827766e884c13723a4ae4\workspace\transformed\jetified-ui-tooling-data-release\res
+com.example.vault.app-navigation-common-ktx-2.7.7-38 C:\Users\shame\.gradle\caches\9.1.0\transforms\c946e58d361af11372d06ddd219903be\workspace\transformed\navigation-common-ktx-2.7.7\res
+com.example.vault.app-jetified-security-crypto-1.1.0-alpha06-39 C:\Users\shame\.gradle\caches\9.1.0\transforms\ca376ea2e09b463364cec7159ea9f649\workspace\transformed\jetified-security-crypto-1.1.0-alpha06\res
+com.example.vault.app-jetified-emoji2-views-helper-1.3.0-40 C:\Users\shame\.gradle\caches\9.1.0\transforms\ca73d0c71327f51c5db126c6108d8a49\workspace\transformed\jetified-emoji2-views-helper-1.3.0\res
+com.example.vault.app-jetified-navigation-compose-2.7.7-41 C:\Users\shame\.gradle\caches\9.1.0\transforms\cb654bd24d222be7f2adf171c04e846d\workspace\transformed\jetified-navigation-compose-2.7.7\res
+com.example.vault.app-jetified-lifecycle-viewmodel-savedstate-2.7.0-42 C:\Users\shame\.gradle\caches\9.1.0\transforms\d40e64fecc5dd7949bb93d1a3d02de44\workspace\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\res
+com.example.vault.app-jetified-savedstate-ktx-1.2.1-43 C:\Users\shame\.gradle\caches\9.1.0\transforms\d5bb4ab7d00ecae6f545f8640909dfca\workspace\transformed\jetified-savedstate-ktx-1.2.1\res
+com.example.vault.app-room-runtime-2.6.1-44 C:\Users\shame\.gradle\caches\9.1.0\transforms\d96fcc221215ad8d99598c025d5ba46a\workspace\transformed\room-runtime-2.6.1\res
+com.example.vault.app-jetified-activity-1.8.2-45 C:\Users\shame\.gradle\caches\9.1.0\transforms\d9c3eec2d2b5b6d09f786b4a10695db6\workspace\transformed\jetified-activity-1.8.2\res
+com.example.vault.app-jetified-material-icons-extended-release-46 C:\Users\shame\.gradle\caches\9.1.0\transforms\da44fc836021c15c78bfc8a516333e7e\workspace\transformed\jetified-material-icons-extended-release\res
+com.example.vault.app-jetified-material3-release-47 C:\Users\shame\.gradle\caches\9.1.0\transforms\df7a1eee8a9ab65026d277fd7011c908\workspace\transformed\jetified-material3-release\res
+com.example.vault.app-fragment-1.5.1-48 C:\Users\shame\.gradle\caches\9.1.0\transforms\df9f64f363fd9be2f96e837c37b4150b\workspace\transformed\fragment-1.5.1\res
+com.example.vault.app-jetified-lifecycle-viewmodel-compose-2.7.0-49 C:\Users\shame\.gradle\caches\9.1.0\transforms\e00896066052a8046ad3b0a64459c5d9\workspace\transformed\jetified-lifecycle-viewmodel-compose-2.7.0\res
+com.example.vault.app-jetified-foundation-layout-release-50 C:\Users\shame\.gradle\caches\9.1.0\transforms\e11af05d398ee832f91a6911b3c4864a\workspace\transformed\jetified-foundation-layout-release\res
+com.example.vault.app-jetified-material-ripple-release-51 C:\Users\shame\.gradle\caches\9.1.0\transforms\e17b7d2577e7133d28044dd2abc94771\workspace\transformed\jetified-material-ripple-release\res
+com.example.vault.app-jetified-ui-util-release-52 C:\Users\shame\.gradle\caches\9.1.0\transforms\e4f88823bd9a6a07a92f17c6bbb1292d\workspace\transformed\jetified-ui-util-release\res
+com.example.vault.app-jetified-android-database-sqlcipher-4.5.4-53 C:\Users\shame\.gradle\caches\9.1.0\transforms\e902cc656c0c46529ec0f78307218d18\workspace\transformed\jetified-android-database-sqlcipher-4.5.4\res
+com.example.vault.app-jetified-runtime-saveable-release-54 C:\Users\shame\.gradle\caches\9.1.0\transforms\e95fcb347afad7165f6ed4e6fd0e824c\workspace\transformed\jetified-runtime-saveable-release\res
+com.example.vault.app-jetified-emoji2-1.3.0-55 C:\Users\shame\.gradle\caches\9.1.0\transforms\e9e194bf3b7898b082db5f48bac0407e\workspace\transformed\jetified-emoji2-1.3.0\res
+com.example.vault.app-lifecycle-runtime-2.7.0-56 C:\Users\shame\.gradle\caches\9.1.0\transforms\ebb70ba32f8f5f3f21d846726e7d93e1\workspace\transformed\lifecycle-runtime-2.7.0\res
+com.example.vault.app-jetified-ui-graphics-release-57 C:\Users\shame\.gradle\caches\9.1.0\transforms\ec6447fe64111977dc5d9df023bd89aa\workspace\transformed\jetified-ui-graphics-release\res
+com.example.vault.app-jetified-runtime-release-58 C:\Users\shame\.gradle\caches\9.1.0\transforms\f1bbff7b9beeb23b2ef7858a1d19fdfe\workspace\transformed\jetified-runtime-release\res
+com.example.vault.app-jetified-ui-text-release-59 C:\Users\shame\.gradle\caches\9.1.0\transforms\fd987f2b6a32cc5a984734869e675a46\workspace\transformed\jetified-ui-text-release\res
+com.example.vault.app-jetified-animation-core-release-60 C:\Users\shame\.gradle\caches\9.1.0\transforms\ff89484ac631d061c52273a4e7257eff\workspace\transformed\jetified-animation-core-release\res
+com.example.vault.app-resValues-61 D:\Projects\AG Kit\Vault\app\build\generated\res\resValues\debug
+com.example.vault.app-updated_navigation_xml-62 D:\Projects\AG Kit\Vault\app\build\generated\updated_navigation_xml\debug
+com.example.vault.app-packageDebugResources-63 D:\Projects\AG Kit\Vault\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.vault.app-packageDebugResources-64 D:\Projects\AG Kit\Vault\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.vault.app-debug-65 D:\Projects\AG Kit\Vault\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.vault.app-debug-66 D:\Projects\AG Kit\Vault\app\src\debug\res
+com.example.vault.app-main-67 D:\Projects\AG Kit\Vault\app\src\main\res
