@@ -122,4 +122,32 @@ class AddTransactionViewModel @Inject constructor(
     }
     
 
+    // Seed default account if none exists
+    private fun seedAccountsIfNeeded() {
+        viewModelScope.launch {
+            try {
+                // Collect first emission to check if empty logic
+                val currentAccounts = accountRepository.getAccounts()
+                
+                // We can't block. Let's just launch a separate collector that cancels itself
+                val job = launch {
+                    currentAccounts.collect { accounts ->
+                        if (accounts.isEmpty()) {
+                            accountRepository.createAccount(
+                                name = "Cash",
+                                type = "CASH", 
+                                initialBalance = 0.0,
+                                color = "#10B981", // Emerald
+                                icon = "wallet"
+                            )
+                        }
+                        // Cancel after first check
+                        this.coroutineContext.cancelChildren() 
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
