@@ -7,6 +7,7 @@ import com.example.vault.domain.repository.BudgetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,15 +23,11 @@ class BudgetsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<BudgetsUiState> = budgetRepository.getAllBudgets()
+        .map { budgets -> BudgetsUiState(budgets = budgets, isLoading = false) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = BudgetsUiState(isLoading = true)
-        )
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = BudgetsUiState()
         )
 
     fun deleteBudget(budgetId: String) {
