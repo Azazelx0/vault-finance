@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vault"
+    namespace = "com.vault.finance"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vault"
+        applicationId = "com.vault.finance"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
