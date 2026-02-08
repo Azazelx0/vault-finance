@@ -69,6 +69,8 @@ fun AddAccountScreen(
                         Icon(Icons.Default.Check, contentDescription = "Save", tint = EmeraldGrowth)
                     }
                 }
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier
