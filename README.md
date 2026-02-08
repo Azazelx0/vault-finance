@@ -57,7 +57,7 @@ Built with the latest Android development standards:
 
 ## 📥 Download
 
-[**Get the Latest APK**](https://github.com/Azazelx0/vault-finance/releases/tag/App)
+[**Get the Latest APK**](https://github.com/Azazelx0/vault-finance/releases/download/App/Vault.Finance.v1.0.apk)
 
 ---
 
