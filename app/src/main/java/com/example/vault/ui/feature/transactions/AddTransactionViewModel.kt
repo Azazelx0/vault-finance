@@ -16,8 +16,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.cancelChildren
+
 import java.util.Date
 import javax.inject.Inject
 
@@ -129,9 +130,9 @@ class AddTransactionViewModel @Inject constructor(
                 // Collect first emission to check if empty logic
                 val currentAccounts = accountRepository.getAccounts()
                 
-                // We can't block. Let's just launch a separate collector that cancels itself
-                val job = launch {
-                    currentAccounts.collect { accounts ->
+                // We can't block. Let's just launch a separate collector
+                launch {
+                    currentAccounts.take(1).collect { accounts ->
                         if (accounts.isEmpty()) {
                             accountRepository.createAccount(
                                 name = "Cash",
@@ -141,8 +142,6 @@ class AddTransactionViewModel @Inject constructor(
                                 icon = "wallet"
                             )
                         }
-                        // Cancel after first check
-                        this.coroutineContext.cancelChildren() 
                     }
                 }
             } catch (e: Exception) {
