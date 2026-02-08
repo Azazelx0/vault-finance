@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancelChildren
 import java.util.Date
 import javax.inject.Inject
 
@@ -60,6 +61,7 @@ class AddTransactionViewModel @Inject constructor(
 
     init {
         seedCategoriesIfNeeded()
+        seedAccountsIfNeeded()
     }
 
     fun setTransactionType(type: TransactionType) {
