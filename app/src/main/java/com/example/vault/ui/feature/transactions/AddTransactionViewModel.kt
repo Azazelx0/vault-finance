@@ -101,31 +101,23 @@ class AddTransactionViewModel @Inject constructor(
         }
     }
     
-    // Seeding Logic (Simplified for MVP)
+    // Seeding Logic - Seeds default categories on first run
     private fun seedCategoriesIfNeeded() {
         viewModelScope.launch {
-            // Check if flow emits empty first, but flows are async. 
-            // Better to check DB directly or just try insert on conflict ignore.
-            // Here we rely on Repos for a quick check.
-            // Since getAll is a flow, we need a suspend one-shot check.
-            // For now, I'll blindly insert defaults with OnConflictStrategy.IGNORE (implied if ID matches or Name unique?) 
-            // Actually my Entities generate UUIDs. 
-            // So duplicate categories could appear if I don't check count.
-            // Skipping complex check: If user sees duplicates they can delete. 
-            // Ideal: 'GetCategoryCount' suspend fun in Dao.
+            // Seed default categories - IGNORE strategy will prevent duplicates
+            val defaults = listOf(
+                CategoryEntity(name = "Food", type = CategoryType.EXPENSE, colorHex = "#F59E0B", iconName = "restaurant", isSystemDefault = true),
+                CategoryEntity(name = "Transport", type = CategoryType.EXPENSE, colorHex = "#3B82F6", iconName = "directions_car", isSystemDefault = true),
+                CategoryEntity(name = "Housing", type = CategoryType.EXPENSE, colorHex = "#EF4444", iconName = "home", isSystemDefault = true),
+                CategoryEntity(name = "Shopping", type = CategoryType.EXPENSE, colorHex = "#8B5CF6", iconName = "shopping_bag", isSystemDefault = true),
+                CategoryEntity(name = "Entertainment", type = CategoryType.EXPENSE, colorHex = "#EC4899", iconName = "movie", isSystemDefault = true),
+                CategoryEntity(name = "Salary", type = CategoryType.INCOME, colorHex = "#10B981", iconName = "attach_money", isSystemDefault = true),
+                CategoryEntity(name = "Freelance", type = CategoryType.INCOME, colorHex = "#06B6D4", iconName = "work", isSystemDefault = true),
+                CategoryEntity(name = "Investment", type = CategoryType.INCOME, colorHex = "#14B8A6", iconName = "trending_up", isSystemDefault = true)
+            )
+            defaults.forEach { categoryRepository.addCategory(it) }
         }
     }
     
-    fun seedDefaults() {
-         viewModelScope.launch {
-             // Basic Categories
-             val defaults = listOf(
-                 CategoryEntity(name = "Food", type = CategoryType.EXPENSE, colorHex = "#F59E0B", iconName = "restaurant"),
-                 CategoryEntity(name = "Transport", type = CategoryType.EXPENSE, colorHex = "#3B82F6", iconName = "directions_car"),
-                 CategoryEntity(name = "Housing", type = CategoryType.EXPENSE, colorHex = "#EF4444", iconName = "home"),
-                 CategoryEntity(name = "Salary", type = CategoryType.INCOME, colorHex = "#10B981", iconName = "attach_money")
-             )
-             defaults.forEach { categoryRepository.addCategory(it) }
-         }
-    }
+
 }

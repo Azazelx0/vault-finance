@@ -8,7 +8,10 @@ enum class CategoryType {
     INCOME, EXPENSE, TRANSFER
 }
 
-@Entity(tableName = "categories")
+@Entity(
+    tableName = "categories",
+    indices = [androidx.room.Index(value = ["name", "type"], unique = true)]
+)
 data class CategoryEntity(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),

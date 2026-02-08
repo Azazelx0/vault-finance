@@ -21,7 +21,7 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE type = 'EXPENSE'")
     fun getExpenseCategories(): Flow<List<CategoryEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCategory(category: CategoryEntity)
 
     @Update
