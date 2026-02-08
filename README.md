@@ -2,7 +2,7 @@
   <h1>🛡️ Vault Finance</h1>
   <p><i>The Future of Personal Finance Management</i></p>
 
-  [![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge&logo=firebase)](https://github.com/mshameer2002/Stitch-Vault)
+  [![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge&logo=firebase)](https://github.com/Azazelx0/vault-finance)
   [![Language](https://img.shields.io/badge/Kotlin-1.9.0-purple?style=for-the-badge&logo=kotlin)](https://kotlinlang.org/)
   [![Framework](https://img.shields.io/badge/Jetpack%20Compose-Material%203-green?style=for-the-badge&logo=android)](https://developer.android.com/jetpack/compose)
   [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -58,7 +58,7 @@ Built with the latest Android development standards:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/mshameer2002/Stitch-Vault.git
+    git clone https://github.com/Azazelx0/vault-finance.git
     ```
 2.  **Open in Android Studio:**
     Select `File > Open` and choose the cloned repository.
