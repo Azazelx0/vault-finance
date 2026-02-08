@@ -18,6 +18,7 @@ data class DashboardState(
     val monthlyIncome: Double = 0.0,
     val monthlySpend: Double = 0.0,
     val recentTransactions: List<Transaction> = emptyList(),
+    val primaryCurrency: String = "USD",
     val isLoading: Boolean = true
 )
 
@@ -42,11 +43,15 @@ class DashboardViewModel @Inject constructor(
             .filter { it.amount < 0 }
             .sumOf { it.amount }
 
+        // Determine primary currency (from first account or default)
+        val primaryCurrency = accounts.firstOrNull()?.currencyCode ?: "USD"
+
         DashboardState(
             totalBalance = totalBalance,
             monthlyIncome = monthlyIncome,
             monthlySpend = kotlin.math.abs(monthlySpend),
             recentTransactions = transactions.take(5),
+            primaryCurrency = primaryCurrency,
             isLoading = false
         )
     }.stateIn(

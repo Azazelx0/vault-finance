@@ -31,6 +31,8 @@ import androidx.navigation.NavController
 import com.example.vault.domain.model.Transaction
 import com.example.vault.data.local.entity.TransactionType
 import com.example.vault.ui.navigation.Screen
+import com.example.vault.ui.theme.StitchTextMuted
+import com.example.vault.ui.util.CurrencyFormatter
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -112,14 +114,16 @@ fun DashboardScreen(
                 item {
                     StitchBalanceCard(
                         balance = state.totalBalance,
-                        growth = 2.4
+                        growth = 2.4,
+                        currencyCode = state.primaryCurrency
                     )
                 }
 
                 item {
                     StitchIncomeExpenseGrid(
                         income = state.monthlyIncome,
-                        expenses = state.monthlySpend
+                        expenses = state.monthlySpend,
+                        currencyCode = state.primaryCurrency
                     )
                 }
 
@@ -186,7 +190,7 @@ fun StitchHeader() {
 }
 
 @Composable
-fun StitchBalanceCard(balance: Double, growth: Double) {
+fun StitchBalanceCard(balance: Double, growth: Double, currencyCode: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
@@ -223,7 +227,7 @@ fun StitchBalanceCard(balance: Double, growth: Double) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "$${String.format("%,.2f", balance)}",
+                    text = CurrencyFormatter.format(balance, currencyCode),
                     style = MaterialTheme.typography.displayLarge.copy(
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 42.sp,
@@ -267,7 +271,7 @@ fun StitchBalanceCard(balance: Double, growth: Double) {
 }
 
 @Composable
-fun StitchIncomeExpenseGrid(income: Double, expenses: Double) {
+fun StitchIncomeExpenseGrid(income: Double, expenses: Double, currencyCode: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -277,25 +281,27 @@ fun StitchIncomeExpenseGrid(income: Double, expenses: Double) {
             label = "INCOME",
             amount = income,
             color = StitchEmerald,
-            icon = Icons.Default.ArrowDownward
+            icon = Icons.Default.ArrowDownward,
+            currencyCode = currencyCode
         )
         StitchSummaryCard(
             modifier = Modifier.weight(1f),
             label = "EXPENSES",
             amount = expenses,
             color = StitchRose,
-            icon = Icons.Default.ArrowUpward
+            icon = Icons.Default.ArrowUpward,
+            currencyCode = currencyCode
         )
     }
 }
 
 @Composable
 fun StitchSummaryCard(
-    modifier: Modifier = Modifier,
     label: String,
     amount: Double,
     color: Color,
-    icon: ImageVector
+    icon: ImageVector,
+    currencyCode: String
 ) {
     Card(
         modifier = modifier,
@@ -332,7 +338,7 @@ fun StitchSummaryCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "$${String.format("%,.2f", amount)}",
+                    text = CurrencyFormatter.format(amount, currencyCode),
                     style = MaterialTheme.typography.titleLarge.copy(
                         fontWeight = FontWeight.Bold,
                         letterSpacing = (-0.5).sp
@@ -405,13 +411,9 @@ fun StitchTransactionItem(transaction: Transaction) {
 
             // Amount column
             Column(horizontalAlignment = Alignment.End) {
+                val sign = if (transaction.type == TransactionType.INCOME) "+" else "-"
                 Text(
-                    text = "${if (transaction.type == TransactionType.INCOME) "+" else "-"}$${
-                        String.format(
-                            "%,.2f",
-                            transaction.amount
-                        )
-                    }",
+                    text = "$sign${CurrencyFormatter.format(transaction.amount, transaction.currencyCode)}",
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
