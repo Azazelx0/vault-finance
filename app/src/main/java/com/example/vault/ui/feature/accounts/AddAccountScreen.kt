@@ -24,6 +24,8 @@ import com.example.vault.data.local.entity.AccountType
 import com.example.vault.ui.theme.EmeraldGrowth
 import com.example.vault.ui.theme.RoyalAccent
 import com.example.vault.domain.model.Currency
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun AddAccountScreen(
@@ -70,11 +72,6 @@ fun AddAccountScreen(
             )
         }
     ) { padding ->
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-
-// ...
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
