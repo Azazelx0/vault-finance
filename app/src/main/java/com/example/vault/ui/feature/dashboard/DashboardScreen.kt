@@ -31,7 +31,6 @@ import androidx.navigation.NavController
 import com.example.vault.domain.model.Transaction
 import com.example.vault.data.local.entity.TransactionType
 import com.example.vault.ui.navigation.Screen
-import com.example.vault.ui.theme.StitchTextMuted
 import com.example.vault.ui.util.CurrencyFormatter
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -297,6 +296,7 @@ fun StitchIncomeExpenseGrid(income: Double, expenses: Double, currencyCode: Stri
 
 @Composable
 fun StitchSummaryCard(
+    modifier: Modifier = Modifier,
     label: String,
     amount: Double,
     color: Color,
