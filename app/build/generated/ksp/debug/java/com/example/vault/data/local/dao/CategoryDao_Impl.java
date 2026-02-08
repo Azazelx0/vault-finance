@@ -45,7 +45,7 @@ public final class CategoryDao_Impl implements CategoryDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `categories` (`id`,`name`,`type`,`colorHex`,`iconName`,`parentId`,`budgetId`,`isSystemDefault`) VALUES (?,?,?,?,?,?,?,?)";
+        return "INSERT OR IGNORE INTO `categories` (`id`,`name`,`type`,`colorHex`,`iconName`,`parentId`,`budgetId`,`isSystemDefault`) VALUES (?,?,?,?,?,?,?,?)";
       }
 
       @Override

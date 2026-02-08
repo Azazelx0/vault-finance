@@ -55,6 +55,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `accounts` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `currencyCode` TEXT NOT NULL, `currentBalance` REAL NOT NULL, `initialBalance` REAL NOT NULL, `colorHex` TEXT NOT NULL, `iconName` TEXT NOT NULL, `isArchived` INTEGER NOT NULL, `lastUpdated` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `categories` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `colorHex` TEXT NOT NULL, `iconName` TEXT NOT NULL, `parentId` TEXT, `budgetId` TEXT, `isSystemDefault` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_categories_name_type` ON `categories` (`name`, `type`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `transactions` (`id` TEXT NOT NULL, `amount` REAL NOT NULL, `type` TEXT NOT NULL, `accountId` TEXT NOT NULL, `toAccountId` TEXT, `categoryId` TEXT, `date` INTEGER NOT NULL, `note` TEXT, `status` TEXT NOT NULL, `tags` TEXT NOT NULL, `attachmentPath` TEXT, PRIMARY KEY(`id`), FOREIGN KEY(`accountId`) REFERENCES `accounts`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`categoryId`) REFERENCES `categories`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_transactions_accountId` ON `transactions` (`accountId`)");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_transactions_categoryId` ON `transactions` (`categoryId`)");
@@ -63,7 +64,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `budgets` (`id` TEXT NOT NULL, `categoryId` TEXT NOT NULL, `limitAmount` REAL NOT NULL, `period` TEXT NOT NULL, `startDate` INTEGER NOT NULL, `endDate` INTEGER, `notifyThresholdPercent` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`categoryId`) REFERENCES `categories`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_budgets_categoryId` ON `budgets` (`categoryId`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ef3103e1c2aa8c1be32be95a75696e5d')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87795b5571bad9be0dd5a170d8e2f3dc')");
       }
 
       @Override
@@ -147,7 +148,8 @@ public final class AppDatabase_Impl extends AppDatabase {
         _columnsCategories.put("budgetId", new TableInfo.Column("budgetId", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCategories.put("isSystemDefault", new TableInfo.Column("isSystemDefault", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysCategories = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesCategories = new HashSet<TableInfo.Index>(0);
+        final HashSet<TableInfo.Index> _indicesCategories = new HashSet<TableInfo.Index>(1);
+        _indicesCategories.add(new TableInfo.Index("index_categories_name_type", true, Arrays.asList("name", "type"), Arrays.asList("ASC", "ASC")));
         final TableInfo _infoCategories = new TableInfo("categories", _columnsCategories, _foreignKeysCategories, _indicesCategories);
         final TableInfo _existingCategories = TableInfo.read(db, "categories");
         if (!_infoCategories.equals(_existingCategories)) {
@@ -222,7 +224,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "ef3103e1c2aa8c1be32be95a75696e5d", "124aa3cc7a31c0d21cc094b8c83944cf");
+    }, "87795b5571bad9be0dd5a170d8e2f3dc", "654d3ada518d8be8ffdf05aa27218e96");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

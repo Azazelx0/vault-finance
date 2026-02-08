@@ -22,7 +22,7 @@ import com.example.vault.data.local.entity.TransactionEntity
         GoalEntity::class,
         BudgetEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
