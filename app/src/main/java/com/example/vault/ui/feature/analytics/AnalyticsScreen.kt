@@ -250,7 +250,7 @@ fun CategoryProgressItem(categoryName: String, amount: Double, maxAmount: Double
             }
             Spacer(modifier = Modifier.height(8.dp))
             LinearProgressIndicator(
-                progress = (amount / maxAmount).toFloat(),
+                progress = { (amount / maxAmount).toFloat() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(8.dp)

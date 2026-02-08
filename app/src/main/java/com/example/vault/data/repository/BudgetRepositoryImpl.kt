@@ -119,9 +119,8 @@ class BudgetRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteBudget(id: String) {
-        val budgets = budgetDao.getAllBudgets()
         // Note: This is not ideal - we need a delete by ID method in the DAO
-        // For now, we'll need to fetch and delete
+        // For now, this is a placeholder
     }
 
     private fun calculateSpentAmount(
