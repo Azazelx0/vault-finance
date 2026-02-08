@@ -13,6 +13,7 @@ data class Transaction(
     val categoryName: String?,
     val categoryColor: String?, 
     val categoryIcon: String?,
+    val currencyCode: String = "USD", // Default for migration
     val date: Date,
     val note: String?
 )

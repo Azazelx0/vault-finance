@@ -40,6 +40,7 @@ class TransactionRepositoryImpl @Inject constructor(
                     categoryName = category?.name ?: "Uncategorized",
                     categoryColor = category?.colorHex,
                     categoryIcon = category?.iconName,
+                    currencyCode = account?.currencyCode ?: "USD",
                     date = Date(txn.date),
                     note = txn.note
                 )
@@ -68,6 +69,7 @@ class TransactionRepositoryImpl @Inject constructor(
                     categoryName = category?.name ?: "Uncategorized",
                     categoryColor = category?.colorHex,
                     categoryIcon = category?.iconName,
+                    currencyCode = account?.currencyCode ?: "USD",
                     date = Date(txn.date),
                     note = txn.note
                 )
