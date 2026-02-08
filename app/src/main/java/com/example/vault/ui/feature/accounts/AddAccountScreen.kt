@@ -26,6 +26,7 @@ import com.example.vault.ui.theme.RoyalAccent
 import com.example.vault.domain.model.Currency
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.horizontalScroll
 
 @Composable
 fun AddAccountScreen(
@@ -111,13 +112,33 @@ fun AddAccountScreen(
 
             // Currency Selector
             Text("Currency", style = MaterialTheme.typography.titleMedium)
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(Currency.values()) { currency ->
-                    FilterChip(
-                        selected = selectedCurrency == currency,
-                        onClick = { selectedCurrency = currency },
-                        label = { Text("${currency.code} ${currency.symbol}") }
-                    )
+            
+            // Using a simple Row with horizontalScroll instead of LazyRow to avoid layout issues
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Currency.values().forEach { currency ->
+                    val isSelected = selectedCurrency == currency
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .height(40.dp)
+                            .background(
+                                color = if (isSelected) RoyalAccent else Color.LightGray.copy(alpha = 0.2f),
+                                shape = CircleShape
+                            )
+                            .clickable { selectedCurrency = currency }
+                            .padding(horizontal = 16.dp)
+                    ) {
+                        Text(
+                            text = "${currency.code} ${currency.symbol}",
+                            color = if (isSelected) Color.White else Color.Black,
+                            style = MaterialTheme.typography.labelLarge
+                        )
+                    }
                 }
             }
             
