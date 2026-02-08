@@ -46,7 +46,7 @@ class AccountRepositoryImpl @Inject constructor(
             name = name,
             type = type,
             balance = currentBalance,
-            currency = currencyCode,
+            currencyCode = currencyCode,
             colorHex = colorHex,
             iconName = iconName
         )

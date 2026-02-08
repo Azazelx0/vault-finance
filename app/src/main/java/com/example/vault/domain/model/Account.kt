@@ -7,7 +7,7 @@ data class Account(
     val name: String,
     val type: AccountType,
     val balance: Double,
-    val currency: String,
+    val currencyCode: String,
     val colorHex: String,
     val iconName: String
 )
