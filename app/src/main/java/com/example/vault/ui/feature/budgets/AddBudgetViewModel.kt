@@ -34,7 +34,7 @@ class AddBudgetViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            categoryRepository.getAllCategories().collect { categories ->
+            categoryRepository.getCategories().collect { categories ->
                 _uiState.update { it.copy(categories = categories, isLoading = false) }
             }
         }

@@ -17,9 +17,6 @@ fun VaultNavGraph() {
         composable(Screen.AddAccount.route) {
             com.example.vault.ui.feature.accounts.AddAccountScreen(navController = navController)
         }
-        composable(Screen.Accounts.route) {
-            // AccountsScreen(navController)
-        }
         composable(Screen.Transactions.route) {
             com.example.vault.ui.feature.transactions.TransactionsScreen(navController = navController)
         }
