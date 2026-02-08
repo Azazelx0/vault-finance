@@ -1,6 +1,6 @@
 package com.example.vault.domain.model
 
-enum class Currency(val code: String, val symbol: String, val name: String, val flag: String) {
+enum class Currency(val code: String, val symbol: String, val displayName: String, val flag: String) {
     USD("USD", "$", "US Dollar", "🇺🇸"),
     EUR("EUR", "€", "Euro", "🇪🇺"),
     GBP("GBP", "£", "British Pound", "🇬🇧"),
