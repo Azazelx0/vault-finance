@@ -11,13 +11,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -30,10 +31,18 @@ import androidx.navigation.NavController
 import com.example.vault.domain.model.Transaction
 import com.example.vault.data.local.entity.TransactionType
 import com.example.vault.ui.navigation.Screen
-import com.example.vault.ui.theme.EmeraldGrowth
-import com.example.vault.ui.theme.RoseAlert
-import com.example.vault.ui.theme.RoyalAccent
-import com.example.vault.ui.theme.SurfaceLayer
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+// Stitch Design Colors - Exact from HTML
+private val StitchPrimary = Color(0xFF6764F2)
+private val StitchBackground = Color(0xFF0A0A14)
+private val StitchBackgroundGradient = Color(0xFF2A2A4A)
+private val StitchEmerald = Color(0xFF10B981)
+private val StitchRose = Color(0xFFF43F5E)
+private val StitchTextMuted = Color(0xFF9D9DB9)
+private val StitchGlass = Color.White.copy(alpha = 0.03f)
+private val StitchGlassBorder = Color.White.copy(alpha = 0.1f)
 
 @Composable
 fun DashboardScreen(
@@ -42,209 +51,383 @@ fun DashboardScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navController.navigate(Screen.AddTransaction.route) },
-                containerColor = EmeraldGrowth,
-                contentColor = Color.White
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Transaction")
-            }
-        }
-    ) { padding ->
-        LazyColumn(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.radialGradient(
+                    colors = listOf(
+                        StitchBackgroundGradient,
+                        StitchBackground
+                    ),
+                    center = androidx.compose.ui.geometry.Offset(0f, 0f)
+                )
+            )
+    ) {
+        // Glow overlay at top - exact from Stitch HTML
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(horizontal = 24.dp),
-            contentPadding = PaddingValues(vertical = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(32.dp)
-        ) {
-            item {
-                HeaderSection()
-            }
-
-            item {
-                TotalBalanceCard(totalBalance = state.totalBalance, monthlySpend = state.monthlySpend)
-            }
-
-            item {
-                ActionRow(navController)
-            }
-
-            item {
-                Row(
-                    modifier = Modifier.fillMaxWidth().clickable { navController.navigate(Screen.Transactions.route) },
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Recent Transactions",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onBackground
+                .fillMaxWidth()
+                .fillMaxHeight(0.5f)
+                .background(
+                    Brush.radialGradient(
+                        colors = listOf(
+                            StitchPrimary.copy(alpha = 0.15f),
+                            Color.Transparent
+                        ),
+                        radius = 800f
                     )
-                    Text(
-                        text = "See All",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = RoyalAccent
+                )
+        )
+
+        Scaffold(
+            containerColor = Color.Transparent,
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = { navController.navigate(Screen.AddTransaction.route) },
+                    containerColor = StitchPrimary,
+                    contentColor = Color.White,
+                    shape = CircleShape
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add",
+                        modifier = Modifier.size(32.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(16.dp))
             }
-
-            items(state.recentTransactions) { transaction ->
-                TransactionItem(transaction)
-                Spacer(modifier = Modifier.height(12.dp))
-            }
-        }
-    }
-}
-
-@Composable
-fun HeaderSection() {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column {
-            Text(
-                text = "Good Evening,",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Text(
-                text = "Vault User",
-                style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                color = MaterialTheme.colorScheme.onBackground
-            )
-        }
-        // Placeholder for Profile Icon or Settings
-        Box(
-            modifier = Modifier
-                .size(48.dp)
-                .background(SurfaceLayer, CircleShape)
-        )
-    }
-}
-
-@Composable
-fun TotalBalanceCard(totalBalance: Double, monthlySpend: Double) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = SurfaceLayer)
-    ) {
-        Column(
-            modifier = Modifier.padding(24.dp)
-        ) {
-            Text(
-                text = "Total Balance",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Text(
-                text = "$${String.format("%,.2f", totalBalance)}",
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = 40.sp),
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+        ) { padding ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(horizontal = 24.dp),
+                contentPadding = PaddingValues(top = 32.dp, bottom = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                StatItem(label = "Monthly Spend", value = "$${String.format("%,.0f", monthlySpend)}", color = RoseAlert)
-                StatItem(label = "Savings", value = "+12%", color = EmeraldGrowth) // Mock data (TODO)
+                item {
+                    StitchHeader()
+                }
+
+                item {
+                    StitchBalanceCard(
+                        balance = state.totalBalance,
+                        growth = 2.4
+                    )
+                }
+
+                item {
+                    StitchIncomeExpenseGrid(
+                        income = state.monthlyIncome,
+                        expenses = state.monthlySpend
+                    )
+                }
+
+                item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Recent Activity",
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 20.sp
+                            ),
+                            color = Color.White
+                        )
+                        TextButton(onClick = { navController.navigate(Screen.Transactions.route) }) {
+                            Text(
+                                text = "View All",
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    fontWeight = FontWeight.Bold
+                                ),
+                                color = StitchPrimary
+                            )
+                        }
+                    }
+                }
+
+                items(state.recentTransactions.take(4)) { transaction ->
+                    StitchTransactionItem(transaction)
+                }
+
+                item {
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
             }
         }
     }
 }
 
 @Composable
-fun StatItem(label: String, value: String, color: Color) {
+fun StitchHeader() {
     Column {
         Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            text = "WELCOME BACK",
+            style = MaterialTheme.typography.labelSmall.copy(
+                fontWeight = FontWeight.Medium,
+                letterSpacing = 2.sp
+            ),
+            color = StitchTextMuted
         )
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = value,
-            style = MaterialTheme.typography.titleMedium,
-            color = color
+            text = "Your Vault",
+            style = MaterialTheme.typography.headlineMedium.copy(
+                fontWeight = FontWeight.Bold
+            ),
+            color = Color.White
         )
     }
 }
 
 @Composable
-fun ActionRow(navController: NavController) {
-    Row(
+fun StitchBalanceCard(balance: Double, growth: Double) {
+    Card(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        ActionButton(icon = Icons.Default.ArrowUpward, label = "Transfer") { /* TODO */ }
-        ActionButton(icon = Icons.Default.AttachMoney, label = "Budgets") { navController.navigate(Screen.Budgets.route) }
-        ActionButton(icon = Icons.Default.ArrowDownward, label = "Request") { /* TODO */ }
-        ActionButton(icon = Icons.Default.Add, label = "Add Acct") { navController.navigate(Screen.AddAccount.route) }
-    }
-}
-
-@Composable
-fun ActionButton(icon: ImageVector, label: String, onClick: () -> Unit) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        IconButton(
-            onClick = onClick,
-            modifier = Modifier
-                .size(56.dp)
-                .background(SurfaceLayer, CircleShape)
-        ) {
-            Icon(icon, contentDescription = label, tint = RoyalAccent)
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = label, style = MaterialTheme.typography.labelSmall)
-    }
-}
-
-@Composable
-fun TransactionItem(transaction: Transaction) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(SurfaceLayer, RoundedCornerShape(16.dp))
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = StitchGlass
+        ),
+        border = androidx.compose.foundation.BorderStroke(1.dp, StitchGlassBorder)
     ) {
         Box(
             modifier = Modifier
-                .size(48.dp)
-                .background(MaterialTheme.colorScheme.background, CircleShape),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
+                .padding(32.dp)
         ) {
-            // Icon based on category or type
-            Icon(
-                imageVector = if (transaction.type == TransactionType.INCOME) Icons.Default.ArrowUpward else Icons.Default.ArrowDownward,
-                contentDescription = null,
-                tint = if (transaction.type == TransactionType.INCOME) EmeraldGrowth else RoseAlert
+            // Abstract glow inside card - exact from Stitch
+            Box(
+                modifier = Modifier
+                    .size(128.dp)
+                    .align(Alignment.TopEnd)
+                    .offset(x = 40.dp, y = (-40).dp)
+                    .blur(48.dp)
+                    .background(StitchPrimary.copy(alpha = 0.2f), CircleShape)
             )
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Total Wealth",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontWeight = FontWeight.Medium
+                    ),
+                    color = StitchTextMuted
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "$${String.format("%,.2f", balance)}",
+                    style = MaterialTheme.typography.displayLarge.copy(
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 42.sp,
+                        letterSpacing = (-1).sp
+                    ),
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                // Growth indicator - exact from Stitch
+                Surface(
+                    shape = RoundedCornerShape(99.dp),
+                    color = StitchEmerald.copy(alpha = 0.1f),
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        StitchEmerald.copy(alpha = 0.2f)
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.TrendingUp,
+                            contentDescription = "Growth",
+                            tint = StitchEmerald,
+                            modifier = Modifier.size(14.dp)
+                        )
+                        Text(
+                            text = "+${growth}% this month",
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = StitchEmerald
+                        )
+                    }
+                }
+            }
         }
-        Spacer(modifier = Modifier.width(16.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = transaction.categoryName ?: "Uncategorized", // Or account name
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.SemiBold
-            )
-            Text(
-                text = transaction.note ?: "No notes",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-        Text(
-            text = "${if (transaction.type == TransactionType.EXPENSE) "-" else "+"}$${Math.abs(transaction.amount)}",
-            style = MaterialTheme.typography.titleMedium,
-            color = if (transaction.type == TransactionType.INCOME) EmeraldGrowth else RoseAlert
+    }
+}
+
+@Composable
+fun StitchIncomeExpenseGrid(income: Double, expenses: Double) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        StitchSummaryCard(
+            modifier = Modifier.weight(1f),
+            label = "INCOME",
+            amount = income,
+            color = StitchEmerald,
+            icon = Icons.Default.ArrowDownward
         )
+        StitchSummaryCard(
+            modifier = Modifier.weight(1f),
+            label = "EXPENSES",
+            amount = expenses,
+            color = StitchRose,
+            icon = Icons.Default.ArrowUpward
+        )
+    }
+}
+
+@Composable
+fun StitchSummaryCard(
+    modifier: Modifier = Modifier,
+    label: String,
+    amount: Double,
+    color: Color,
+    icon: ImageVector
+) {
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = StitchGlass
+        ),
+        border = androidx.compose.foundation.BorderStroke(1.dp, StitchGlassBorder)
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(color.copy(alpha = 0.1f), RoundedCornerShape(12.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = label,
+                    tint = color
+                )
+            }
+            Column {
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontWeight = FontWeight.Medium,
+                        letterSpacing = 1.5.sp
+                    ),
+                    color = StitchTextMuted
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "$${String.format("%,.2f", amount)}",
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = (-0.5).sp
+                    ),
+                    color = Color.White
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun StitchTransactionItem(transaction: Transaction) {
+    val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+    val formattedDate = dateFormat.format(transaction.date)
+    
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = StitchGlass
+        ),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.05f))
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Icon box - exact from Stitch
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(StitchGlass, RoundedCornerShape(12.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = transaction.categoryName?.firstOrNull()?.toString() ?: "?",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = when (transaction.type) {
+                        TransactionType.INCOME -> StitchEmerald
+                        TransactionType.EXPENSE -> StitchRose
+                        else -> StitchPrimary
+                    }
+                )
+            }
+
+            // Details column
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = transaction.categoryName ?: "Other",
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp
+                    ),
+                    color = Color.White
+                )
+                Text(
+                    text = "${transaction.accountName} • $formattedDate",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontSize = 12.sp
+                    ),
+                    color = StitchTextMuted
+                )
+            }
+
+            // Amount column
+            Column(horizontalAlignment = Alignment.End) {
+                Text(
+                    text = "${if (transaction.type == TransactionType.INCOME) "+" else "-"}$${
+                        String.format(
+                            "%,.2f",
+                            transaction.amount
+                        )
+                    }",
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp
+                    ),
+                    color = if (transaction.type == TransactionType.INCOME) StitchEmerald else Color.White
+                )
+                Text(
+                    text = "COMPLETED",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 10.sp,
+                        letterSpacing = 0.sp
+                    ),
+                    color = StitchTextMuted
+                )
+            }
+        }
     }
 }

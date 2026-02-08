@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.vault.ui.feature.dashboard.TransactionItem
+import com.example.vault.ui.feature.dashboard.StitchTransactionItem
 import com.example.vault.ui.theme.SurfaceLayer
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,7 +56,7 @@ fun TransactionsScreen(
             // distinctBy date... stickyHeader...
             
             items(transactions) { transaction ->
-                TransactionItem(transaction)
+                StitchTransactionItem(transaction)
             }
         }
     }

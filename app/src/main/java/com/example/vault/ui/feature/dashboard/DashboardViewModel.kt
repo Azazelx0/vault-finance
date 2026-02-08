@@ -15,6 +15,7 @@ import javax.inject.Inject
 
 data class DashboardState(
     val totalBalance: Double = 0.0,
+    val monthlyIncome: Double = 0.0,
     val monthlySpend: Double = 0.0,
     val recentTransactions: List<Transaction> = emptyList(),
     val isLoading: Boolean = true
@@ -32,15 +33,19 @@ class DashboardViewModel @Inject constructor(
     ) { accounts, transactions ->
         val totalBalance = accounts.sumOf { it.balance }
         
-        // Simple logic for "Monthly Spend" - just summing negative transactions for now
-        // In real app, filter by current month date
+        // Calculate monthly income and expenses
+        val monthlyIncome = transactions
+            .filter { it.amount > 0 }
+            .sumOf { it.amount }
+            
         val monthlySpend = transactions
-            .filter { it.amount < 0 } // Assuming expense is negative or check Type
+            .filter { it.amount < 0 }
             .sumOf { it.amount }
 
         DashboardState(
             totalBalance = totalBalance,
-            monthlySpend = kotlin.math.abs(monthlySpend), // Display as positive number
+            monthlyIncome = monthlyIncome,
+            monthlySpend = kotlin.math.abs(monthlySpend),
             recentTransactions = transactions.take(5),
             isLoading = false
         )
