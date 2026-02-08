@@ -45,11 +45,7 @@ fun AddTransactionScreen(
     var selectedCategoryId by remember { mutableStateOf<String?>(null) }
     var date by remember { mutableStateOf(Date()) }
 
-    // Seed defaults if empty
-    LaunchedEffect(Unit) {
-        // Quick hack: trigger seed if needed. Ideally observe state count.
-        viewModel.seedDefaults()
-    }
+
 
     Scaffold(
         topBar = {
