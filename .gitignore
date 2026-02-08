@@ -26,7 +26,17 @@ local.properties
 proguard/
 
 # Log Files
+# Log Files
 *.log
+build-log.txt
+build-output.txt
+
+# Local Config
+local.properties
+# Build Folders
+**/build/
+.gradle/
+
 
 # Android Studio Navigation Editor temp files
 .navigation/
@@ -34,15 +44,10 @@ proguard/
 # Android Studio captures folder
 captures/
 
-# IntelliJ
+# IntelliJ / Android Studio
+.idea/
 *.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/libraries
-.idea/caches
+
 
 # Keystore files
 *.jks
