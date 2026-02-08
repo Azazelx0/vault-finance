@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    com.example.vault.ui.navigation.VaultNavGraph()
+                    com.example.vault.MainScreen()
                 }
             }
         }
