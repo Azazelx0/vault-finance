@@ -3,6 +3,7 @@
   <p><i>The Future of Personal Finance Management</i></p>
 
   [![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge&logo=firebase)](https://github.com/Azazelx0/vault-finance)
+  [![Download](https://img.shields.io/badge/Download-APK-blue?style=for-the-badge&logo=android)](https://github.com/Azazelx0/vault-finance/releases/tag/App)
   [![Language](https://img.shields.io/badge/Kotlin-1.9.0-purple?style=for-the-badge&logo=kotlin)](https://kotlinlang.org/)
   [![Framework](https://img.shields.io/badge/Jetpack%20Compose-Material%203-green?style=for-the-badge&logo=android)](https://developer.android.com/jetpack/compose)
   [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -51,6 +52,12 @@ Built with the latest Android development standards:
 | **Navigation** | [Navigation Compose](https://developer.android.com/guide/navigation/navigation-compose) |
 
 
+
+---
+
+## 📥 Download
+
+[**Get the Latest APK**](https://github.com/Azazelx0/vault-finance/releases/tag/App)
 
 ---
 
