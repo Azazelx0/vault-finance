@@ -23,14 +23,15 @@ class AccountRepositoryImpl @Inject constructor(
         return dao.getAccountById(id)?.toDomain()
     }
 
-    override suspend fun createAccount(name: String, type: String, initialBalance: Double, color: String, icon: String) {
+    override suspend fun createAccount(name: String, type: String, initialBalance: Double, color: String, icon: String, currencyCode: String) {
         val entity = AccountEntity(
             name = name,
             type = AccountType.valueOf(type),
             initialBalance = initialBalance,
             currentBalance = initialBalance,
             colorHex = color,
-            iconName = icon
+            iconName = icon,
+            currencyCode = currencyCode
         )
         dao.insertAccount(entity)
     }

@@ -23,7 +23,7 @@ class AccountsViewModel @Inject constructor(
             initialValue = emptyList()
         )
 
-    fun createAccount(name: String, type: String, initialBalance: String, color: String) {
+    fun createAccount(name: String, type: String, initialBalance: String, color: String, currencyCode: String) {
         viewModelScope.launch {
             val balance = initialBalance.toDoubleOrNull() ?: 0.0
             accountRepository.createAccount(
@@ -31,7 +31,8 @@ class AccountsViewModel @Inject constructor(
                 type = type,
                 initialBalance = balance,
                 color = color,
-                icon = "wallet" // Default icon for now
+                icon = "wallet", // Default icon for now
+                currencyCode = currencyCode
             )
         }
     }

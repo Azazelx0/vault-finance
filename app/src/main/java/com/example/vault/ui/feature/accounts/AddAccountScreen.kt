@@ -3,6 +3,8 @@ package com.example.vault.ui.feature.accounts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -21,6 +23,7 @@ import androidx.navigation.NavController
 import com.example.vault.data.local.entity.AccountType
 import com.example.vault.ui.theme.EmeraldGrowth
 import com.example.vault.ui.theme.RoyalAccent
+import com.example.vault.domain.model.Currency
 
 @Composable
 fun AddAccountScreen(
@@ -31,6 +34,7 @@ fun AddAccountScreen(
     var balance by remember { mutableStateOf("") }
     var selectedType by remember { mutableStateOf(AccountType.CASH) }
     var selectedColor by remember { mutableStateOf(RoyalAccent) }
+    var selectedCurrency by remember { mutableStateOf(Currency.USD) }
 
     val colors = listOf(
         Color(0xFFEF4444), Color(0xFFF97316), Color(0xFFF59E0B),
@@ -54,7 +58,8 @@ fun AddAccountScreen(
                                 name = name,
                                 type = selectedType.name,
                                 initialBalance = balance,
-                                color = String.format("#%06X", (0xFFFFFF and selectedColor.toArgb()))
+                                color = String.format("#%06X", (0xFFFFFF and selectedColor.toArgb())),
+                                currencyCode = selectedCurrency.code
                             )
                             navController.popBackStack()
                         }
@@ -97,6 +102,18 @@ fun AddAccountScreen(
                         selected = selectedType == type,
                         onClick = { selectedType = type },
                         label = { Text(type.name) }
+                    )
+                }
+            }
+
+            // Currency Selector
+            Text("Currency", style = MaterialTheme.typography.titleMedium)
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                items(Currency.values()) { currency ->
+                    FilterChip(
+                        selected = selectedCurrency == currency,
+                        onClick = { selectedCurrency = currency },
+                        label = { Text("${currency.code} ${currency.symbol}") }
                     )
                 }
             }
